@@ -4,15 +4,12 @@ import "./App.css";
 
 function App() {
   const [step, setStep] = useState(1);
-  const [userNumber, setUserNumber] = useState("");
-  const [predictedNumber, setPredictedNumber] = useState(null);
-  const [error, setError] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     if (step === 7) {
       setShowConfetti(true);
-      setTimeout(() => setShowConfetti(false), 5000); // Stop confetti after 3 sec
+      setTimeout(() => setShowConfetti(false), 5000); // Stop confetti after 5 sec
     }
   }, [step]);
 
@@ -20,24 +17,12 @@ function App() {
     setStep((prev) => prev + 1);
   };
 
-  const handleInputChange = (e) => {
-    setUserNumber(e.target.value);
-  };
-
-  const predictNumber = () => {
-    if (parseInt(userNumber) !== 4) {
-      setError(true);
-      return;
-    }
-    setPredictedNumber(4);
+  const revealNumber = () => {
     setStep(7);
   };
 
   const resetGame = () => {
     setStep(1);
-    setUserNumber("");
-    setPredictedNumber(null);
-    setError(false);
   };
 
   return (
@@ -90,22 +75,10 @@ function App() {
       {step === 6 && (
         <div className="fade-in">
           <h2>Final Step</h2>
-          <p>Enter the final number you got:</p>
-          <input
-            type="number"
-            value={userNumber}
-            onChange={handleInputChange}
-            placeholder="Your result"
-          />
-          <br />
-          <button onClick={predictNumber} style={{ marginTop: "10px" }}>
-            Predict Number
+          <p>Now, let me reveal your final number!</p>
+          <button onClick={revealNumber} style={{ marginTop: "10px" }}>
+            Reveal Number
           </button>
-          {error && (
-            <p className="error-message">
-              💥 Don't fool me! I can read your mind! 💥
-            </p>
-          )}
         </div>
       )}
 
@@ -113,7 +86,7 @@ function App() {
         <div className="fade-in final-reveal">
           <h2>✨ Behold the Power of Magic! ✨</h2>
           <div className="magic-box">
-            <h1 className="magic-number">🎩✨ {predictedNumber} ✨🎩</h1>
+            <h1 className="magic-number">🎩✨ 4 ✨🎩</h1>
           </div>
           <p className="magic-text">Told you, I can read minds! 😏🔥</p>
           <button className="restart-button" onClick={resetGame}>
