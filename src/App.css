@@ -1,50 +1,35 @@
-/* Container styling */
+/* General container styling */
 .container {
+  text-align: center;
+  /* margin-top: 50px; */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  color: white;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  align-items: center;
   padding: 20px;
-  background: linear-gradient(135deg, #4a90e2, #7b68ee, #ff6b6b);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
-}
-
-/* Background Animation */
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Content box */
-.fade-in {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 400px;
 }
 
 /* Header styling */
 h1 {
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: #ffdd57;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 10px rgba(255, 215, 0, 0.8);
 }
 
-/* Step header */
+/* Step headers */
 h2 {
-  color: #4a90e2;
+  color: #ff6b6b;
+  font-size: 2em;
 }
 
 /* Paragraph styling */
 p {
-  font-size: 1.1em;
-  color: #333;
+  font-size: 1.2em;
+  color: #f0f0f0;
 }
 
 /* Button styling */
@@ -53,32 +38,32 @@ button {
   border: none;
   color: white;
   padding: 12px 25px;
-  font-size: 1em;
+  font-size: 1.2em;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  max-width: 300px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-  background-color: #e63946;
-  transform: scale(1.05);
+  background-color: #ff4d4d;
+  transform: scale(1.1);
 }
 
 /* Input styling */
 input[type="number"] {
   padding: 12px;
-  font-size: 1em;
-  width: 100%;
-  max-width: 250px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 10px;
+  font-size: 1.2em;
+  width: 220px;
+  border: 2px solid #ffdd57;
+  border-radius: 8px;
   text-align: center;
 }
 
-/* Fade in animation */
+/* Fade-in animation for each step */
+.fade-in {
+  animation: fadeIn 0.8s ease-in;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -87,5 +72,78 @@ input[type="number"] {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Error message with explosion effect */
+.error-message {
+  color: red;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 15px;
+  animation: explode 0.5s ease-in-out infinite alternate;
+}
+
+/* Explosion animation */
+@keyframes explode {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+    color: #ff0000;
+  }
+}
+
+/* Final reveal section */
+.final-reveal {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Glowing magical box effect */
+.magic-box {
+  display: inline-block;
+  background: linear-gradient(45deg, #ffdd57, #ff6b6b, #7b68ee);
+  padding: 20px 40px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.9);
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Glowing animation */
+@keyframes glow {
+  from {
+    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.9);
+  }
+  to {
+    box-shadow: 0px 0px 40px rgba(255, 105, 180, 1);
+  }
+}
+
+/* Magic number text */
+.magic-number {
+  font-size: 3em;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Fancy magic text */
+.magic-text {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+  animation: textGlow 1.5s infinite alternate;
+}
+
+/* Text glow animation */
+@keyframes textGlow {
+  from {
+    color: #fff;
+  }
+  to {
+    color: #ffd700;
   }
 }

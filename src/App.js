@@ -5,6 +5,7 @@ function App() {
   const [step, setStep] = useState(1);
   const [userNumber, setUserNumber] = useState("");
   const [predictedNumber, setPredictedNumber] = useState(null);
+  const [error, setError] = useState(false);
 
   const nextStep = () => {
     setStep(step + 1);
@@ -15,13 +16,17 @@ function App() {
   };
 
   const predictNumber = () => {
-    setPredictedNumber(4); // Trick always results in 4
+    if (parseInt(userNumber) !== 4) {
+      setError(true);
+      return;
+    }
+    setPredictedNumber(4);
     setStep(step + 1);
   };
 
   return (
     <div className="container">
-      <h1>Mind Reading Trick</h1>
+      <h1>Mind Reading Trick 🎩</h1>
 
       {step === 1 && (
         <div className="fade-in">
@@ -77,14 +82,19 @@ function App() {
           <button onClick={predictNumber} style={{ marginTop: "10px" }}>
             Predict Number
           </button>
+          {error && (
+            <p className="error-message">💥 Don't fool me! I can read your mind! 💥</p>
+          )}
         </div>
       )}
 
       {step === 7 && (
-        <div className="fade-in">
-          <h2>Your final number is...</h2>
-          <h1>🎩✨ {predictedNumber} ✨🎩</h1>
-          <p>Magic, right? 😃</p>
+        <div className="fade-in final-reveal">
+          <h2>✨ Behold the Power of Magic! ✨</h2>
+          <div className="magic-box">
+            <h1 className="magic-number">🎩✨ {predictedNumber} ✨🎩</h1>
+          </div>
+          <p className="magic-text">Told you, I can read minds! 😏🔥</p>
         </div>
       )}
     </div>
