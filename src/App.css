@@ -1,7 +1,14 @@
+/* Prevent scrolling when confetti appears */
+html, body {
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 /* General container styling */
 .container {
   text-align: center;
-  /* margin-top: 50px; */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
   color: white;
@@ -11,28 +18,37 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
+  width: 100vw;
+  height: 100vh;
 }
 
-/* Header styling */
-h1 {
-  color: #ffdd57;
+/* Animated Title */
+.animated-title {
   font-size: 2.5em;
+  color: #ffdd57;
   text-shadow: 2px 2px 10px rgba(255, 215, 0, 0.8);
+  animation: slideIn 1s ease-in-out;
 }
 
-/* Step headers */
-h2 {
-  color: #ff6b6b;
-  font-size: 2em;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Paragraph styling */
-p {
+/* Step Indicator */
+.step-indicator {
   font-size: 1.2em;
-  color: #f0f0f0;
+  color: #ffdd57;
+  margin-bottom: 15px;
 }
 
-/* Button styling */
+/* Button Styling */
 button {
   background-color: #ff6b6b;
   border: none;
@@ -41,15 +57,26 @@ button {
   font-size: 1.2em;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 button:hover {
   background-color: #ff4d4d;
   transform: scale(1.1);
+  box-shadow: 0px 0px 15px rgba(255, 77, 77, 0.8);
 }
 
-/* Input styling */
+/* Restart Button */
+.restart-button {
+  background: #7b68ee;
+  margin-top: 15px;
+}
+
+.restart-button:hover {
+  background: #5a4ec7;
+}
+
+/* Input Styling */
 input[type="number"] {
   padding: 12px;
   font-size: 1.2em;
@@ -57,9 +84,11 @@ input[type="number"] {
   border: 2px solid #ffdd57;
   border-radius: 8px;
   text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
 }
 
-/* Fade-in animation for each step */
+/* Fade-in animation */
 .fade-in {
   animation: fadeIn 0.8s ease-in;
 }
@@ -75,75 +104,11 @@ input[type="number"] {
   }
 }
 
-/* Error message with explosion effect */
-.error-message {
-  color: red;
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-top: 15px;
-  animation: explode 0.5s ease-in-out infinite alternate;
-}
-
-/* Explosion animation */
-@keyframes explode {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.2);
-    color: #ff0000;
-  }
-}
-
-/* Final reveal section */
-.final-reveal {
-  animation: fadeIn 1s ease-in-out;
-}
-
-/* Glowing magical box effect */
+/* Magic Reveal */
 .magic-box {
-  display: inline-block;
   background: linear-gradient(45deg, #ffdd57, #ff6b6b, #7b68ee);
   padding: 20px 40px;
   border-radius: 15px;
   box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.9);
   animation: glow 1.5s ease-in-out infinite alternate;
-}
-
-/* Glowing animation */
-@keyframes glow {
-  from {
-    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.9);
-  }
-  to {
-    box-shadow: 0px 0px 40px rgba(255, 105, 180, 1);
-  }
-}
-
-/* Magic number text */
-.magic-number {
-  font-size: 3em;
-  font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Fancy magic text */
-.magic-text {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #fff;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  margin-top: 10px;
-  animation: textGlow 1.5s infinite alternate;
-}
-
-/* Text glow animation */
-@keyframes textGlow {
-  from {
-    color: #fff;
-  }
-  to {
-    color: #ffd700;
-  }
 }

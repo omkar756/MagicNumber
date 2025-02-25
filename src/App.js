@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Confetti from "react-confetti";
 import "./App.css";
 
 function App() {
@@ -6,9 +7,17 @@ function App() {
   const [userNumber, setUserNumber] = useState("");
   const [predictedNumber, setPredictedNumber] = useState(null);
   const [error, setError] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  useEffect(() => {
+    if (step === 7) {
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 5000); // Stop confetti after 3 sec
+    }
+  }, [step]);
 
   const nextStep = () => {
-    setStep(step + 1);
+    setStep((prev) => prev + 1);
   };
 
   const handleInputChange = (e) => {
@@ -21,12 +30,22 @@ function App() {
       return;
     }
     setPredictedNumber(4);
-    setStep(step + 1);
+    setStep(7);
+  };
+
+  const resetGame = () => {
+    setStep(1);
+    setUserNumber("");
+    setPredictedNumber(null);
+    setError(false);
   };
 
   return (
     <div className="container">
-      <h1>Mind Reading Trick 🎩</h1>
+      {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />}
+
+      <h1 className="animated-title">Mind Reading Trick 🎩</h1>
+      <p className="step-indicator">Step {step} of 6</p>
 
       {step === 1 && (
         <div className="fade-in">
@@ -83,7 +102,9 @@ function App() {
             Predict Number
           </button>
           {error && (
-            <p className="error-message">💥 Don't fool me! I can read your mind! 💥</p>
+            <p className="error-message">
+              💥 Don't fool me! I can read your mind! 💥
+            </p>
           )}
         </div>
       )}
@@ -95,6 +116,9 @@ function App() {
             <h1 className="magic-number">🎩✨ {predictedNumber} ✨🎩</h1>
           </div>
           <p className="magic-text">Told you, I can read minds! 😏🔥</p>
+          <button className="restart-button" onClick={resetGame}>
+            Try Again 🔄
+          </button>
         </div>
       )}
     </div>
